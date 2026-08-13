@@ -1,0 +1,10 @@
+{
+  "description": "Enables users to quickly check symptoms and book AI-powered telemedicine consultations with expert doctors anytime, anywhere for fast, personalized care.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
