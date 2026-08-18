@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { Link } from 'react-router'
+import { Search, Bell, User, CalendarClock } from 'lucide-react'
 import { NavItem, SubItem } from '../../types'
 import { NAV_ITEMS } from '../../data/navData'
 
@@ -11,16 +12,19 @@ export function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; set
   const handleMegaEnter = useCallback(() => { if (leaveTimer.current) clearTimeout(leaveTimer.current) }, [])
   return (
     <header style={{ backgroundColor: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(0,184,148,0.1)', position: 'sticky', top: 0, zIndex: 100 }} onMouseLeave={handleLeave}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 28px', height: 68, display: 'flex', alignItems: 'center' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 28px', height: 68, display: 'flex', alignItems: 'center', gap: 0 }}>
         <Logo />
-        <nav style={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center', gap: 2 }} className="gnb-desktop">
+        <nav style={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center', gap: 4 }} className="gnb-desktop">
           {NAV_ITEMS.map((item) => (
             <GnbItem key={item.label} item={item} active={activeMenu === item.label} onEnter={() => item.mega && handleEnter(item.label)} onLeave={handleLeave} />
           ))}
         </nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }} className="gnb-desktop">
-          <AppDownloadButton />
-          <LoginButton />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="gnb-desktop">
+          <UtilityIconButton aria-label="검색" icon={<Search size={18} strokeWidth={2} />} />
+          <NotificationButton />
+          <MyAppointmentsChip />
+          <div style={{ width: 1, height: 20, backgroundColor: 'rgba(0,0,0,0.1)', margin: '0 6px' }} />
+          <UserButton />
         </div>
         <button onClick={() => setMobileOpen(!mobileOpen)} style={{ marginLeft: 'auto', display: 'none', background: 'none', border: 'none', cursor: 'pointer', padding: 8, color: '#2D3436', borderRadius: 8 }} className="gnb-mobile-btn" aria-label="메뉴">
           <HamburgerIcon open={mobileOpen} />
@@ -36,10 +40,52 @@ export function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; set
   )
 }
 
+function UtilityIconButton({ icon, 'aria-label': label }: { icon: React.ReactNode; 'aria-label': string }) {
+  const [h, setH] = useState(false)
+  return (
+    <button onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} aria-label={label}
+      style={{ width: 38, height: 38, borderRadius: 10, border: 'none', backgroundColor: h ? '#F4F9F8' : 'transparent', color: h ? '#00B894' : '#636E72', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.15s' }}>
+      {icon}
+    </button>
+  )
+}
+
+function NotificationButton() {
+  const [h, setH] = useState(false)
+  return (
+    <button onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} aria-label="알림"
+      style={{ width: 38, height: 38, borderRadius: 10, border: 'none', backgroundColor: h ? '#F4F9F8' : 'transparent', color: h ? '#00B894' : '#636E72', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.15s', position: 'relative' }}>
+      <Bell size={18} strokeWidth={2} />
+      <span style={{ position: 'absolute', top: 7, right: 7, width: 8, height: 8, borderRadius: '50%', backgroundColor: '#FF6B6B', border: '1.5px solid #fff' }} />
+    </button>
+  )
+}
+
+function MyAppointmentsChip() {
+  const [h, setH] = useState(false)
+  return (
+    <Link to="/my-appointments" onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 13px', borderRadius: 100, backgroundColor: h ? '#d4f0e8' : '#E8F8F5', border: '1.5px solid rgba(0,184,148,0.25)', textDecoration: 'none', transition: 'all 0.16s', marginLeft: 4 }}>
+      <CalendarClock size={14} strokeWidth={2.2} color="#00B894" />
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#00B894', whiteSpace: 'nowrap', letterSpacing: '-0.2px' }}>내 예약</span>
+    </Link>
+  )
+}
+
+function UserButton() {
+  const [h, setH] = useState(false)
+  return (
+    <button onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} aria-label="마이페이지"
+      style={{ width: 36, height: 36, borderRadius: '50%', border: `1.5px solid ${h ? '#00B894' : 'rgba(0,184,148,0.2)'}`, backgroundColor: h ? '#E8F8F5' : '#fff', color: h ? '#00B894' : '#636E72', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.15s' }}>
+      <User size={16} strokeWidth={2} />
+    </button>
+  )
+}
+
 export function GnbItem({ item, active, onEnter, onLeave }: { item: NavItem; active: boolean; onEnter: () => void; onLeave: () => void }) {
   return (
     <div style={{ position: 'relative' }} onMouseEnter={onEnter} onMouseLeave={item.mega ? undefined : onLeave}>
-      <Link to={item.path} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '8px 16px', borderRadius: 9, color: active ? '#00B894' : '#2D3436', textDecoration: 'none', fontSize: 14.5, fontWeight: active ? 600 : 500, transition: 'color 0.16s,background 0.16s', backgroundColor: active ? '#E8F8F5' : 'transparent', whiteSpace: 'nowrap' }}>
+      <Link to={item.path} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '9px 20px', borderRadius: 10, color: active ? '#00B894' : '#2D3436', textDecoration: 'none', fontSize: 17, fontWeight: active ? 700 : 600, transition: 'color 0.16s,background 0.16s', backgroundColor: active ? '#E8F8F5' : 'transparent', whiteSpace: 'nowrap', letterSpacing: '-0.3px' }}>
         {item.label}
         {item.mega && <ChevronIcon style={{ transform: active ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.22s', opacity: 0.55 }} />}
       </Link>
@@ -102,16 +148,6 @@ export function FeaturedCtaButton({ label, to }: { label: string; to: string }) 
   return <Link to={to} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{ display: 'block', padding: '10px 16px', borderRadius: 10, textDecoration: 'none', backgroundColor: hovered ? '#FFD200' : 'rgba(255,255,255,0.92)', color: hovered ? '#2D3436' : '#00B894', fontSize: 13, fontWeight: 700, transition: 'all 0.18s', textAlign: 'left' }}>{label}</Link>
 }
 
-export function AppDownloadButton() {
-  const [h, setH] = useState(false)
-  return <button onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{ display: 'flex', alignItems: 'center', padding: '8px 16px', borderRadius: 9, border: '1px solid rgba(0,184,148,0.2)', backgroundColor: h ? '#F4F9F8' : 'transparent', color: '#2D3436', fontSize: 13.5, fontWeight: 500, cursor: 'pointer', transition: 'all 0.16s', whiteSpace: 'nowrap' }}>앱 다운로드</button>
-}
-
-export function LoginButton() {
-  const [h, setH] = useState(false)
-  return <button onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{ padding: '9px 20px', borderRadius: 10, border: '1.5px solid #00B894', backgroundColor: h ? '#00B894' : '#E8F8F5', color: h ? '#fff' : '#00B894', fontSize: 13.5, fontWeight: 600, cursor: 'pointer', transition: 'all 0.18s', whiteSpace: 'nowrap' }}>로그인 / 회원가입</button>
-}
-
 export function MobileDrawer({ items, onClose }: { items: NavItem[]; onClose: () => void }) {
   const [expanded, setExpanded] = useState<string | null>(null)
   return (
@@ -119,8 +155,8 @@ export function MobileDrawer({ items, onClose }: { items: NavItem[]; onClose: ()
       {items.map((item) => (
         <div key={item.label}>
           {item.mega
-            ? <button onClick={() => setExpanded(expanded === item.label ? null : item.label)} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 24px', background: 'none', border: 'none', cursor: 'pointer', fontSize: 15, fontWeight: 500, color: expanded === item.label ? '#00B894' : '#2D3436', textAlign: 'left' }}>{item.label}<ChevronIcon style={{ transform: expanded === item.label ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', opacity: 0.5 }} /></button>
-            : <Link to={item.path} onClick={onClose} style={{ display: 'block', padding: '13px 24px', fontSize: 15, fontWeight: 500, color: '#2D3436', textDecoration: 'none' }}>{item.label}</Link>
+            ? <button onClick={() => setExpanded(expanded === item.label ? null : item.label)} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 24px', background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, fontWeight: 600, color: expanded === item.label ? '#00B894' : '#2D3436', textAlign: 'left' }}>{item.label}<ChevronIcon style={{ transform: expanded === item.label ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', opacity: 0.5 }} /></button>
+            : <Link to={item.path} onClick={onClose} style={{ display: 'block', padding: '13px 24px', fontSize: 16, fontWeight: 600, color: '#2D3436', textDecoration: 'none' }}>{item.label}</Link>
           }
           {item.mega && expanded === item.label && (
             <div style={{ backgroundColor: '#F9FDFC', padding: '8px 24px 16px' }}>
@@ -141,7 +177,12 @@ export function MobileDrawer({ items, onClose }: { items: NavItem[]; onClose: ()
         </div>
       ))}
       <div style={{ padding: '16px 24px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <button style={{ padding: '12px', borderRadius: 10, border: '1px solid rgba(0,184,148,0.2)', backgroundColor: 'transparent', color: '#2D3436', fontSize: 14, fontWeight: 500, cursor: 'pointer' }}>앱 다운로드</button>
+        <Link to="/my-appointments" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 10, border: '1.5px solid rgba(0,184,148,0.3)', backgroundColor: '#E8F8F5', color: '#00B894', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+          <CalendarClock size={16} />내 예약 현황
+        </Link>
+        <Link to="/community" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '12px', borderRadius: 10, border: '1.5px solid rgba(255,210,0,0.4)', backgroundColor: '#FFF9E0', color: '#2D3436', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+          실시간 질문 1:1
+        </Link>
         <button style={{ padding: '12px', borderRadius: 10, border: 'none', backgroundColor: '#00B894', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>로그인 / 회원가입</button>
       </div>
     </div>
@@ -150,7 +191,7 @@ export function MobileDrawer({ items, onClose }: { items: NavItem[]; onClose: ()
 
 export function Logo() {
   return (
-    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flexShrink: 0, marginRight: 16 }}>
+    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flexShrink: 0, marginRight: 24 }}>
       <div style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#00B894', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3C10 3 6 3 6 7C6 9.5 7.5 11 10 12C12.5 11 14 9.5 14 7C14 3 10 3 10 3Z" fill="white" opacity="0.9"/><circle cx="10" cy="16" r="2" fill="white" opacity="0.9"/><circle cx="10" cy="12" r="1" fill="white"/></svg>
         <div style={{ position: 'absolute', top: -3, right: -3, width: 10, height: 10, borderRadius: '50%', backgroundColor: '#FFD200', border: '2px solid #fff' }} />

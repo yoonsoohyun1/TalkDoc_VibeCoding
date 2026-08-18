@@ -21,12 +21,12 @@ export const HOSPITALS: HospitalData[] = [
 ]
 
 export const REVIEWS = [
-  { name: '이*영', tag: '#야간소아과', rating: 5, text: '새벽 2시에 아이가 고열이 났는데 바로 소아과 원장님과 연결됐어요. 처방전도 금방 나와서 정말 다행이었습니다.', date: '2025.07.12', dept: '소아청소년과' },
-  { name: '박*준', tag: '#탈모약처방', rating: 5, text: '탈모 때문에 병원 가기 창피했는데 집에서 편하게 진료받고 처방전 받았어요. 의사 선생님도 친절하시고 설명도 자세해서 매우 만족합니다.', date: '2025.07.28', dept: '피부과' },
-  { name: '김*희', tag: '#감기처방', rating: 5, text: '회사 점심시간에 10분 만에 진료 끝내고 처방전 받았어요. 병원 가면 최소 1시간인데 톡닥은 정말 빠르고 간편합니다. 강력 추천!', date: '2025.08.03', dept: '내과' },
-  { name: '최*민', tag: '#수면장애상담', rating: 4, text: '수면 문제로 오래 고민했는데 정신건강의학과 상담을 이렇게 쉽게 받을 수 있다니 놀랐어요.', date: '2025.07.19', dept: '정신건강의학과' },
-  { name: '정*은', tag: '#갱년기상담', rating: 5, text: '갱년기 증상으로 힘들었는데 여성 전문의 선생님께 편하게 상담받았어요. 비대면이라 더 솔직하게 얘기할 수 있었어요.', date: '2025.08.01', dept: '산부인과' },
-  { name: '한*진', tag: '#다이어트처방', rating: 5, text: '비만 클리닉 가려면 예약도 어렵고 비용도 비쌌는데, 톡닥에서 합리적인 가격에 전문 상담 받고 처방받았어요.', date: '2025.07.30', dept: '가정의학과' },
+  { name: '이*영', doctorName: '이수진', doctorHospital: '서울대병원 출신', doctorPhoto: 'https://images.unsplash.com/photo-1686737357914-80a665ca1c29?w=160&h=160&fit=crop&crop=faces&auto=format', tag: '야간진료', rating: 5, text: '이수진 원장님이 새벽 2시에도 친절하게 상담해 주셨어요. 아이 소아 고열에 처방전도 즉시 나와서 정말 감사했습니다.', date: '2025.07.12', dept: '소아청소년과' },
+  { name: '박*준', doctorName: '박성민', doctorHospital: '연세세브란스 출신', doctorPhoto: 'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?w=160&h=160&fit=crop&crop=faces&auto=format', tag: '탈모약처방', rating: 5, text: '박성민 원장님이 탈모 진행 상태를 사진으로 꼼꼼히 봐주시고 미녹시딜과 피나스테리드를 처방해 주셨어요. 병원 가기 창피했는데 비대면이라 편했습니다.', date: '2025.07.28', dept: '피부과' },
+  { name: '김*희', doctorName: '김지수', doctorHospital: '서울아산병원 출신', doctorPhoto: 'https://images.unsplash.com/photo-1686737357932-ae1c50492a9e?w=160&h=160&fit=crop&crop=faces&auto=format', tag: '감기처방', rating: 5, text: '김지수 원장님께서 점심시간 10분 만에 진료해 주셨어요. 처방전도 바로 약국으로 전송돼서 퇴근길에 바로 수령했습니다.', date: '2025.08.03', dept: '내과' },
+  { name: '최*민', doctorName: '최재원', doctorHospital: '삼성서울병원 출신', doctorPhoto: 'https://images.unsplash.com/photo-1645066928295-2506defde470?w=160&h=160&fit=crop&crop=faces&auto=format', tag: '수면장애상담', rating: 5, text: '최재원 원장님이 수면 일지를 보시고 수면 패턴을 분석해 주셨어요. CBT-I도 같이 설명해 주셔서 큰 도움이 됐습니다.', date: '2025.07.19', dept: '정신건강의학과' },
+  { name: '정*은', doctorName: '정유나', doctorHospital: '강남세브란스 출신', doctorPhoto: 'https://images.unsplash.com/photo-1605176647037-cb9e5e5dc87d?w=160&h=160&fit=crop&crop=faces&auto=format', tag: '갱년기상담', rating: 5, text: '정유나 원장님께서 갱년기 증상을 아주 세심하게 들어주셨어요. 호르몬 치료 옵션을 자세히 설명해 주셔서 믿음이 갔습니다.', date: '2025.08.01', dept: '산부인과' },
+  { name: '한*진', doctorName: '한동현', doctorHospital: '분당서울대병원 출신', doctorPhoto: 'https://images.unsplash.com/photo-1642975967602-653d378f3b5b?w=160&h=160&fit=crop&crop=faces&auto=format', tag: '다이어트처방', rating: 5, text: '한동현 원장님이 체중 관리 식단까지 직접 짜주셨어요. 처방도 합리적인 가격에 받을 수 있어서 매우 만족스럽습니다.', date: '2025.07.30', dept: '가정의학과' },
 ]
 
 export const FORM_DEPTS = ['진료과 선택', '내과', '피부과', '소아청소년과', '정신건강의학과', '산부인과', '가정의학과', '이비인후과']

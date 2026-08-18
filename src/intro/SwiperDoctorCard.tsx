@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { SWIPER_DOCTORS, CARD_W } from '../data/doctorData'
+import { SWIPER_DOCTORS, CARD_W, DEPT_TAG_STYLES } from '../data/doctorData'
 
 export function SwiperDoctorCard({ doc, active }: { doc: typeof SWIPER_DOCTORS[0]; active: boolean }) {
   const [hovered, setHovered] = useState(false)
   const isActive = active || hovered
+  const deptStyle = DEPT_TAG_STYLES[doc.dept] ?? { bg: '#E8F8F5', text: '#00B894', border: 'rgba(0,184,148,0.2)' }
   return (
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{ flexShrink: 0, width: CARD_W, backgroundColor: '#fff', borderRadius: 20, border: `1.5px solid ${isActive ? doc.color : '#eef4f2'}`, padding: '22px 20px', display: 'flex', flexDirection: 'column', gap: 14, transition: 'all 0.25s ease', boxShadow: isActive ? `0 12px 40px ${doc.color}28` : '0 2px 12px rgba(0,0,0,0.04)', cursor: 'pointer', transform: isActive ? 'translateY(-4px)' : 'translateY(0)' }}>
       <div style={{ position: 'relative', width: 'fit-content' }}>
@@ -13,7 +14,7 @@ export function SwiperDoctorCard({ doc, active }: { doc: typeof SWIPER_DOCTORS[0
       <div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 3 }}><span style={{ fontSize: 15, fontWeight: 800, color: '#2D3436' }}>{doc.name} 원장</span></div>
         <div style={{ fontSize: 12, color: '#636E72', marginBottom: 8 }}>{doc.hospital}</div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><span style={{ fontSize: 11, fontWeight: 700, color: '#fff', backgroundColor: doc.color, padding: '3px 10px', borderRadius: 6, whiteSpace: 'nowrap' }}>{doc.dept}</span><span style={{ fontSize: 11, color: '#636E72', whiteSpace: 'nowrap' }}>경력 {doc.exp}</span></div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><span style={{ fontSize: 11, fontWeight: 700, color: deptStyle.text, backgroundColor: deptStyle.bg, border: `1px solid ${deptStyle.border}`, padding: '3px 10px', borderRadius: 6, whiteSpace: 'nowrap' }}>{doc.dept}</span><span style={{ fontSize: 11, color: '#636E72', whiteSpace: 'nowrap' }}>경력 {doc.exp}</span></div>
       </div>
       <div style={{ fontSize: 12, color: '#636E72', lineHeight: 1.55 }}>{doc.specialty}</div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>

@@ -94,6 +94,4 @@ export const NAV_ITEMS: NavItem[] = [
     },
   },
   { label: '약국 찾기', path: '/pharmacy' },
-  { label: '내 예약 현황', path: '/my-appointments' },
-  { label: '실시간 질문', path: '/community' },
 ]

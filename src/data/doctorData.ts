@@ -1,14 +1,26 @@
 export const DEPT_COLORS: Record<string, string> = { '내과': '#00B894', '피부과': '#FF6B9D', '소아청소년과': '#6C63FF', '정신건강의학과': '#845EF7', '산부인과': '#F06595', '가정의학과': '#20C997', '이비인후과': '#FFA94D', '정형외과': '#339AF0' }
 
+// Soft pastel token system for department tags (bg / text pairs)
+export const DEPT_TAG_STYLES: Record<string, { bg: string; text: string; border: string }> = {
+  '내과':        { bg: '#E6F9F4', text: '#00876B', border: 'rgba(0,184,148,0.2)' },
+  '피부과':      { bg: '#FFF0F5', text: '#C9365F', border: 'rgba(255,107,157,0.2)' },
+  '소아청소년과': { bg: '#EEEAFF', text: '#4B3DB5', border: 'rgba(108,99,255,0.2)' },
+  '정신건강의학과':{ bg: '#F2EEFF', text: '#5B3EAE', border: 'rgba(132,94,247,0.2)' },
+  '산부인과':    { bg: '#FFF0F8', text: '#B83280', border: 'rgba(240,101,149,0.2)' },
+  '가정의학과':  { bg: '#E8FBF5', text: '#0F7A5A', border: 'rgba(32,201,151,0.2)' },
+  '이비인후과':  { bg: '#FFF4E6', text: '#B3560A', border: 'rgba(255,169,77,0.2)' },
+  '정형외과':    { bg: '#E8F3FF', text: '#1A5FA8', border: 'rgba(51,154,240,0.2)' },
+}
+
 export const SWIPER_DOCTORS = [
-  { name: '김지수', dept: '내과', hospital: '서울아산병원 출신', rating: 4.97, reviews: 1284, exp: '15년', specialty: '감기·발열·소화기', photo: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=120&h=120&fit=crop&auto=format', color: '#00B894' },
-  { name: '박성민', dept: '피부과', hospital: '연세세브란스 출신', rating: 4.95, reviews: 986, exp: '11년', specialty: '여드름·탈모·아토피', photo: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=120&h=120&fit=crop&auto=format', color: '#FF6B9D' },
-  { name: '이수진', dept: '소아청소년과', hospital: '서울대병원 출신', rating: 4.98, reviews: 2103, exp: '13년', specialty: '소아발열·성장·예방', photo: 'https://images.unsplash.com/photo-1659353888906-adb3e0041693?w=120&h=120&fit=crop&auto=format', color: '#6C63FF' },
-  { name: '최재원', dept: '정신건강의학과', hospital: '삼성서울병원 출신', rating: 4.93, reviews: 741, exp: '9년', specialty: '불안·수면장애·우울', photo: 'https://images.unsplash.com/photo-1645066928295-2506defde470?w=120&h=120&fit=crop&auto=format', color: '#845EF7' },
-  { name: '정유나', dept: '산부인과', hospital: '강남세브란스 출신', rating: 4.96, reviews: 1458, exp: '12년', specialty: '갱년기·호르몬·여성건강', photo: 'https://images.unsplash.com/photo-1706565029539-d09af5896340?w=120&h=120&fit=crop&auto=format', color: '#F06595' },
-  { name: '한동현', dept: '가정의학과', hospital: '분당서울대병원 출신', rating: 4.91, reviews: 623, exp: '8년', specialty: '비만·만성피로·건강검진', photo: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=120&h=120&fit=crop&auto=format', color: '#20C997' },
-  { name: '오지현', dept: '이비인후과', hospital: '아주대학교병원 출신', rating: 4.94, reviews: 892, exp: '10년', specialty: '중이염·코막힘·인후통', photo: 'https://images.unsplash.com/photo-1673865641073-4479f93a7776?w=120&h=120&fit=crop&auto=format', color: '#FFA94D' },
-  { name: '강민준', dept: '정형외과', hospital: '국립중앙의료원 출신', rating: 4.89, reviews: 544, exp: '11년', specialty: '근골격·관절·척추상담', photo: 'https://images.unsplash.com/photo-1612349316228-5942a9b489c2?w=120&h=120&fit=crop&auto=format', color: '#339AF0' },
+  { name: '김지수', dept: '내과', hospital: '서울아산병원 출신', rating: 4.97, reviews: 1284, exp: '15년', specialty: '감기·발열·소화기', photo: 'https://images.unsplash.com/photo-1686737357932-ae1c50492a9e?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#00B894' },
+  { name: '박성민', dept: '피부과', hospital: '연세세브란스 출신', rating: 4.95, reviews: 986, exp: '11년', specialty: '여드름·탈모·아토피', photo: 'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#FF6B9D' },
+  { name: '이수진', dept: '소아청소년과', hospital: '서울대병원 출신', rating: 4.98, reviews: 2103, exp: '13년', specialty: '소아발열·성장·예방', photo: 'https://images.unsplash.com/photo-1686737357914-80a665ca1c29?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#6C63FF' },
+  { name: '최재원', dept: '정신건강의학과', hospital: '삼성서울병원 출신', rating: 4.93, reviews: 741, exp: '9년', specialty: '불안·수면장애·우울', photo: 'https://images.unsplash.com/photo-1645066928295-2506defde470?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#845EF7' },
+  { name: '정유나', dept: '산부인과', hospital: '강남세브란스 출신', rating: 4.96, reviews: 1458, exp: '12년', specialty: '갱년기·호르몬·여성건강', photo: 'https://images.unsplash.com/photo-1605176647037-cb9e5e5dc87d?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#F06595' },
+  { name: '한동현', dept: '가정의학과', hospital: '분당서울대병원 출신', rating: 4.91, reviews: 623, exp: '8년', specialty: '비만·만성피로·건강검진', photo: 'https://images.unsplash.com/photo-1642975967602-653d378f3b5b?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#20C997' },
+  { name: '오지현', dept: '이비인후과', hospital: '아주대학교병원 출신', rating: 4.94, reviews: 892, exp: '10년', specialty: '중이염·코막힘·인후통', photo: 'https://images.unsplash.com/photo-1631203883080-9e5338ebcf2d?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#FFA94D' },
+  { name: '강민준', dept: '정형외과', hospital: '국립중앙의료원 출신', rating: 4.89, reviews: 544, exp: '11년', specialty: '근골격·관절·척추상담', photo: 'https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?w=160&h=160&fit=crop&crop=faces&auto=format', color: '#339AF0' },
 ]
 
 export const CARD_W = 248
