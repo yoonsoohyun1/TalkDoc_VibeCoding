@@ -1,5 +1,5 @@
 {
-  "description": "Enables users to quickly check symptoms and book AI-powered telemedicine consultations with expert doctors anytime, anywhere for fast, personalized care.",
+ 
   "robots": {
     "index": false
   },
@@ -10,7 +10,11 @@
   "icons": {
     "icon": "/favicon.ico"
   },
+  
+  "title": "톡닥 | 1분 AI 사전 상담 & 실시간 비대면 진료",
+  "description": "아플 땐 참지 말고 톡닥! AI 챗봇 증상 접수부터 맞춤 의사 진료까지 한 번에 연결해 드립니다.",
   "openGraph": {
     "image": "https://talk-doc-vibe-coding.vercel.app/img/ogimg_seo.jpg"
   }
+
 }
